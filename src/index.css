@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Obsidian Gold Elite Palette */
+    --bg-base: #0A0A0A;
+    --bg-low: #131313;
+    --bg-mid: #1c1b1b;
+    --bg-high: #2a2a2a;
+    --bg-highest: #353534;
+    
+    --gold-primary: #D4AF37;
+    --gold-light: #f2ca50;
+    --gold-dim: #574500;
+    
+    --text-primary: #e5e2e1;
+    --text-secondary: #d0c5af;
+    --text-muted: #99907c;
+    
+    --accent-blue: #254188;
+    
+    --font-serif: 'Noto Serif', serif;
+    --font-sans: 'Inter', sans-serif;
+    
+    --radius-sm: 0.125rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  /* Scrollbar - Cinematic Style */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-base);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--bg-high);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dim);
+  }
+}
+
+@layer utilities {
+  .gold-gradient {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dim) 100%);
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-panel {
+    background: rgba(19, 19, 19, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+  }
+
+  .cinematic-shadow {
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 1px rgba(212, 175, 55, 0.1);
+  }
+
+  .saif-pulse {
+    position: relative;
+  }
+
+  .saif-pulse::after {
+    content: '';
+    position: absolute;
+    top: -4px; right: -4px; bottom: -4px; left: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-primary);
+    animation: saifPulse 2s ease-out infinite;
+    opacity: 0;
+  }
+
+  @keyframes saifPulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .editorial-spacing {
+    padding: clamp(2rem, 5vw, 6rem);
+  }
+
+  .lead-card-enter {
+    animation: leadEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes leadEnter {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  
+  .mic-glow {
+    box-shadow: 0 0 60px 10px rgba(212, 175, 55, 0.2);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 2px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--bg-high);
+    border-radius: 10px;
+  }
+}
+
