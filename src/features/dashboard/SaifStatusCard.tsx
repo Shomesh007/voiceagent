@@ -1,12 +1,10 @@
 import React from 'react';
 import { vapi, ASSISTANT_ID } from '../../lib/vapi';
-import { Phone, PhoneOff, Mic, MessageSquare } from 'lucide-react';
+import { Phone, PhoneOff, Mic } from 'lucide-react';
 
 
 const SaifStatusCard: React.FC = () => {
   const [isCalling, setIsCalling] = React.useState(false);
-  const [transcript, setTranscript] = React.useState<string>("");
-  const [lastTranscript, setLastTranscript] = React.useState<string>("");
   const [showOutcome, setShowOutcome] = React.useState(false);
 
   React.useEffect(() => {
@@ -16,26 +14,17 @@ const SaifStatusCard: React.FC = () => {
     };
     const onCallEnd = () => {
       setIsCalling(false);
-      setLastTranscript(transcript);
-      if (transcript) setShowOutcome(true);
-      setTranscript("");
-    };
-    const onMessage = (message: any) => {
-      if (message.type === 'transcript' && message.transcriptType === 'partial') {
-        setTranscript(message.transcript);
-      }
+      setShowOutcome(true);
     };
 
     vapi.on('call-start', onCallStart);
     vapi.on('call-end', onCallEnd);
-    vapi.on('message', onMessage);
 
     return () => {
       vapi.off('call-start', onCallStart);
       vapi.off('call-end', onCallEnd);
-      vapi.off('message', onMessage);
     };
-  }, [transcript]);
+  }, []);
 
   const handleToggleCall = () => {
     if (isCalling) {
@@ -75,19 +64,6 @@ const SaifStatusCard: React.FC = () => {
         </div>
 
         <div className="space-y-6">
-          {isCalling && (
-            <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <div className="flex items-center gap-4 text-[var(--gold-primary)]">
-                <MessageSquare size={16} />
-                <span className="text-[10px] uppercase tracking-widest font-bold">What He's Saying</span>
-              </div>
-              <div className="bg-[var(--bg-mid)]/50 backdrop-blur-md p-6 rounded-3xl border border-white/5 min-h-[80px] flex items-center">
-                <p className="text-xl font-serif text-[var(--text-primary)] italic leading-snug">
-                  "{transcript || "Listening..."}"
-                </p>
-              </div>
-            </div>
-          )}
 
           {showOutcome && !isCalling && (
             <div className="space-y-4 animate-in zoom-in-95 fade-in duration-700">
@@ -96,9 +72,8 @@ const SaifStatusCard: React.FC = () => {
                 <span className="text-[10px] uppercase tracking-widest font-bold">Call Complete</span>
               </div>
               <div className="bg-[var(--gold-primary)]/5 p-6 rounded-3xl border border-[var(--gold-primary)]/10">
-                <p className="text-base text-[var(--text-secondary)] font-serif italic mb-2 opacity-60">What Was Said:</p>
-                <p className="text-lg font-serif text-[var(--text-primary)] leading-snug">
-                  "...{lastTranscript.slice(-150)}"
+                <p className="text-base text-[var(--text-primary)] font-serif">
+                  Conversation saved and lead captured automatically.
                 </p>
               </div>
             </div>
