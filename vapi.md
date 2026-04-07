@@ -86,17 +86,51 @@ vapi.on('error', (error) => console.error(error))
 vapi.stop()
 ```
 
-## ElevenLabs Voice Recommendation
+## Vapi Webhook Setup (Optional but Recommended)
 
-Best voices for Dubai real estate (professional, warm, neutral accent):
-- **Rachel** — clear, professional American English
-- **Aria** — warm, conversational
-- **Charlotte** — British English, premium feel
+### Enable Automatic Lead Capture from Calls
 
-To use ElevenLabs in Vapi:
-1. Create free account at elevenlabs.io
-2. Copy API key
-3. In Vapi Dashboard → Voice → Provider: ElevenLabs → paste API key → select voice
+To automatically save call transcripts and extracted lead data to Supabase:
+
+1. Go to **Vapi Dashboard** → **Webhooks**
+2. Click **Add Webhook**
+3. **URL**: `https://your-vercel-deployment.vercel.app/api/vapi-webhook`
+4. **Events**: Select `end-of-call-report`
+5. **Save**
+
+### What Happens
+- After each call ends, Vapi sends a webhook event
+- `api/vapi-webhook.ts` extracts lead info from the transcript automatically
+- Lead is saved to Supabase `leads` table with `call_type='inbound'` and `status='new'`
+- Full transcript (JSON) is stored for reference
+
+### Webhook Handler Logic
+The handler extracts:
+- **Name** — from early conversation mentions
+- **Phone** — pattern matching for +971 UAE numbers
+- **Budget** — AED mentions and numbers
+- **Location** — checks against known Dubai areas
+- **Property Type** — from transcript keywords (villa, apartment, off-plan, etc.)
+- **Duration** — automatically from Vapi
+- **Transcript** — full JSON conversation history
+
+### Environment Variables Required (for Webhook)
+```
+VITE_SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key  # For webhook handler
+```
+
+If `SUPABASE_SERVICE_ROLE_KEY` is not set, the webhook will fall back to the anon key (which may have RLS restrictions).
+
+---
+
+### Vercel Deployment
+This repo uses `vercel.json` for automatic deployment. The webhook handler will be available at:
+```
+https://[your-project].vercel.app/api/vapi-webhook
+```
+
+
 
 ## Install Vapi SDK
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { vapi, ASSISTANT_ID } from '../../lib/vapi';
 import LeadsTable from '../leads/LeadsTable';
+import CrmPortal from '../crm/CrmPortal';
 import { BrainCircuit, ShieldCheck } from 'lucide-react';
 import type { Lead } from '../../types';
 
@@ -124,6 +125,14 @@ const MobileHome: React.FC<MobileHomeProps> = ({ activeTab, setActiveTab, leads,
       );
     }
 
+    if (activeTab === 'crm') {
+      return (
+        <div className="pt-24 pb-36 px-4">
+          <CrmPortal leads={leads} />
+        </div>
+      );
+    }
+
     // Default: Talk / Home
     return (
       <main className="flex-grow flex flex-col items-center pt-24 pb-36 px-6 max-w-lg mx-auto w-full justify-between animate-in fade-in duration-700">
@@ -234,10 +243,10 @@ const MobileHome: React.FC<MobileHomeProps> = ({ activeTab, setActiveTab, leads,
       {renderContent()}
 
       {/* BottomNavBar */}
-      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-10 pt-4 bg-[#131313]/95 backdrop-blur-xl rounded-t-[2.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.8)] border-t border-white/5">
+      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-10 pt-4 bg-[#131313]/95 backdrop-blur-xl rounded-t-[2.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.8)] border-t border-white/5">
         <button 
           onClick={() => setActiveTab('dashboard')}
-          className={`flex flex-col items-center justify-center rounded-2xl px-8 py-3 transition-all duration-500 ${
+          className={`flex flex-col items-center justify-center rounded-2xl px-4 py-3 transition-all duration-500 ${
             activeTab === 'dashboard' ? 'bg-[#e6c364] text-black shadow-[0_0_20px_rgba(230,195,100,0.4)] scale-110' : 'text-[#4d4637] hover:text-[#e6c364]'
           }`}
         >
@@ -247,7 +256,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ activeTab, setActiveTab, leads,
         
         <button 
           onClick={() => setActiveTab('leads')}
-          className={`flex flex-col items-center justify-center rounded-2xl px-8 py-3 transition-all duration-500 ${
+          className={`flex flex-col items-center justify-center rounded-2xl px-4 py-3 transition-all duration-500 ${
             activeTab === 'leads' ? 'bg-[#e6c364] text-black shadow-[0_0_20px_rgba(230,195,100,0.4)] scale-110' : 'text-[#4d4637] hover:text-[#e6c364]'
           }`}
         >
@@ -256,8 +265,18 @@ const MobileHome: React.FC<MobileHomeProps> = ({ activeTab, setActiveTab, leads,
         </button>
 
         <button 
+          onClick={() => setActiveTab('crm')}
+          className={`flex flex-col items-center justify-center rounded-2xl px-4 py-3 transition-all duration-500 ${
+            activeTab === 'crm' ? 'bg-[#e6c364] text-black shadow-[0_0_20px_rgba(230,195,100,0.4)] scale-110' : 'text-[#4d4637] hover:text-[#e6c364]'
+          }`}
+        >
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: activeTab === 'crm' ? "'FILL' 1" : "'FILL' 0" }}>work</span>
+          <span className="text-[9px] font-black uppercase tracking-widest mt-1.5">CRM</span>
+        </button>
+
+        <button 
           onClick={() => setActiveTab('saif')}
-          className={`flex flex-col items-center justify-center rounded-2xl px-8 py-3 transition-all duration-500 ${
+          className={`flex flex-col items-center justify-center rounded-2xl px-4 py-3 transition-all duration-500 ${
             activeTab === 'saif' ? 'bg-[#e6c364] text-black shadow-[0_0_20px_rgba(230,195,100,0.4)] scale-110' : 'text-[#4d4637] hover:text-[#e6c364]'
           }`}
         >

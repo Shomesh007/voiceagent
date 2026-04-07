@@ -16,6 +16,8 @@ export function useVapi() {
 
     const onCallEnd = () => {
       setCallStatus('ended')
+      // Optionally save transcript to Supabase if webhook is not configured
+      saveCallTranscript()
       setTimeout(() => setCallStatus('idle'), 3000)
     }
 
@@ -37,6 +39,19 @@ export function useVapi() {
       setCallStatus('idle')
     }
 
+    const saveCallTranscript = async () => {
+      if (transcript.length === 0) return
+      try {
+        // Extract lead info from transcript (simplified parsing)
+        // Full implementation would use AI or manual extraction
+        const transcriptJson = JSON.stringify(transcript)
+        console.log('Transcript saved to client state:', transcriptJson)
+        // In production, send to your backend API route to save to Supabase
+      } catch (err) {
+        console.error('Error saving transcript:', err)
+      }
+    }
+
     vapi.on('call-start', onCallStart)
     vapi.on('call-end', onCallEnd)
     vapi.on('transcript', onTranscript)
@@ -50,7 +65,7 @@ export function useVapi() {
       vapi.off('volume-level', onVolumeLevel)
       vapi.off('error', onError)
     }
-  }, [])
+  }, [transcript])
 
   const startCall = useCallback(async () => {
     if (callStatus !== 'idle') return

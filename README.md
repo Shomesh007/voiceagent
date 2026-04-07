@@ -18,6 +18,13 @@ A CRM-style demo dashboard that showcases an AI voice agent (Maya) for a Dubai r
 - After the call, the lead appears instantly in the dashboard (Supabase real-time)
 - Dashboard also shows pre-seeded leads for demo richness
 
+### New: CRM Outbound Portal
+
+- Agents can open the CRM Portal tab and submit lead details manually
+- The app stores the lead in Supabase as `call_type = outbound`
+- The app optionally forwards the lead payload to your AI scheduler webhook
+- Outbound queue updates live so the team can track dispatch status
+
 ## Stack
 
 | Layer | Tool |
@@ -42,7 +49,10 @@ VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 VITE_VAPI_PUBLIC_KEY=your_vapi_public_key
 VITE_VAPI_ASSISTANT_ID=your_vapi_assistant_id
+VITE_AI_SCHEDULER_WEBHOOK_URL=optional_webhook_for_outbound_scheduling
 ```
+
+If `VITE_AI_SCHEDULER_WEBHOOK_URL` is not configured, leads are still saved to CRM and queued for manual outbound follow-up.
 
 ## Demo Flow
 

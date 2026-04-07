@@ -7,8 +7,7 @@ interface OutboundPanelProps {
 }
 
 const OutboundPanel: React.FC<OutboundPanelProps> = ({ leads }) => {
-  // Sort leads by created_at descending or some priority logic
-  const topLeads = leads.slice(0, 5);
+  const topLeads = leads.filter((lead) => lead.call_type === 'outbound').slice(0, 5);
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-right-8 duration-1000 delay-300">

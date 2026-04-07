@@ -37,6 +37,16 @@ export function useLeads() {
           setLeads((prev) => [payload.new as Lead, ...prev])
         }
       )
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'leads' },
+        (payload) => {
+          const updatedLead = payload.new as Lead
+          setLeads((prev) =>
+            prev.map((lead) => (lead.id === updatedLead.id ? updatedLead : lead))
+          )
+        }
+      )
       .subscribe()
 
     return () => {

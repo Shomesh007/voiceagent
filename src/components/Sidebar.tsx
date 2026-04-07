@@ -4,7 +4,8 @@ import {
   PhoneOutgoing, 
   Settings, 
   TrendingUp,
-  BrainCircuit
+  BrainCircuit,
+  BriefcaseBusiness
 } from 'lucide-react';
 
 
@@ -16,10 +17,11 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'leads', label: 'Inbound Leads', icon: Users },
-    { id: 'outbound', label: 'Outbound Queue', icon: PhoneOutgoing },
+    { id: 'crm', label: 'Send Leads', icon: BriefcaseBusiness },
+    { id: 'leads', label: 'Leads', icon: Users },
+    { id: 'outbound', label: 'Calls to Make', icon: PhoneOutgoing },
     { id: 'analytics', label: 'Analytics', icon: TrendingUp },
-    { id: 'saif', label: 'Saif Settings', icon: BrainCircuit },
+    { id: 'saif', label: 'Saif', icon: BrainCircuit },
 
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
@@ -63,13 +65,13 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
         <div className="p-6 rounded-2xl bg-[var(--bg-mid)] relative overflow-hidden group border border-[var(--gold-primary)]/5">
           <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--gold-primary)]/5 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-[var(--gold-primary)]/10 transition-colors" />
           <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest leading-relaxed relative z-10 font-bold">
-            Saif AI Concierge
+            Saif
           </p>
 
           <div className="flex items-center gap-2 mt-3 relative z-10">
             <div className="w-2.5 h-2.5 rounded-full bg-green-500 saif-pulse" />
 
-            <span className="text-[11px] text-[var(--text-secondary)] font-bold tracking-wide">System Online</span>
+            <span className="text-[11px] text-[var(--text-secondary)] font-bold tracking-wide">Ready to work</span>
           </div>
           <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between">
             <span className="text-[10px] text-[var(--text-muted)]">v2.4.9</span>

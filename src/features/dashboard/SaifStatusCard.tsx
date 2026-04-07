@@ -61,17 +61,16 @@ const SaifStatusCard: React.FC = () => {
           <div className="flex items-center gap-3">
             <div className={`w-3 h-3 rounded-full ${isCalling ? 'bg-green-500 saif-pulse' : 'bg-[var(--text-muted)]'}`} />
             <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-[0.4em] font-bold">
-              {isCalling ? 'Live Session Active' : showOutcome ? 'Post-Call Analysis' : 'System Standby'}
+              {isCalling ? 'On the phone' : showOutcome ? 'Call Finished' : 'Waiting'}
             </span>
           </div>
           
           <h2 className="text-4xl font-serif text-[var(--gold-primary)] leading-tight max-w-xl">
-            Saif <br />
-            <span className="text-[var(--text-primary)]">AI Concierge</span>
+            <span className="text-[var(--text-primary)]">Saif</span>
           </h2>
           
           <p className="text-[var(--text-secondary)] text-base max-w-md font-light leading-relaxed">
-            Personalized luxury real estate assistant, qualifying high-intent buyers in Dubai with precision and elegance.
+            An AI phone agent. He calls your customers, answers their questions, and finds out if they want to buy a house.
           </p>
         </div>
 
@@ -80,7 +79,7 @@ const SaifStatusCard: React.FC = () => {
             <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
               <div className="flex items-center gap-4 text-[var(--gold-primary)]">
                 <MessageSquare size={16} />
-                <span className="text-[10px] uppercase tracking-widest font-bold">Real-time Transcript</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold">What He's Saying</span>
               </div>
               <div className="bg-[var(--bg-mid)]/50 backdrop-blur-md p-6 rounded-3xl border border-white/5 min-h-[80px] flex items-center">
                 <p className="text-xl font-serif text-[var(--text-primary)] italic leading-snug">
@@ -94,10 +93,10 @@ const SaifStatusCard: React.FC = () => {
             <div className="space-y-4 animate-in zoom-in-95 fade-in duration-700">
               <div className="flex items-center gap-3 text-green-400">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                <span className="text-[10px] uppercase tracking-widest font-bold">Last Session Outcome Recorded</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold">Call Complete</span>
               </div>
               <div className="bg-[var(--gold-primary)]/5 p-6 rounded-3xl border border-[var(--gold-primary)]/10">
-                <p className="text-base text-[var(--text-secondary)] font-serif italic mb-2 opacity-60">Last Transcript Fragment:</p>
+                <p className="text-base text-[var(--text-secondary)] font-serif italic mb-2 opacity-60">What Was Said:</p>
                 <p className="text-lg font-serif text-[var(--text-primary)] leading-snug">
                   "...{lastTranscript.slice(-150)}"
                 </p>
@@ -117,12 +116,12 @@ const SaifStatusCard: React.FC = () => {
               {isCalling ? (
                 <>
                   <PhoneOff size={20} />
-                  <span className="uppercase tracking-widest text-xs">Terminate Call</span>
+                  <span className="uppercase tracking-widest text-xs">End Call</span>
                 </>
               ) : (
                 <>
                   <Phone size={20} />
-                  <span className="uppercase tracking-widest text-xs">{showOutcome ? 'Restart Demo' : 'Initiate Demo'}</span>
+                  <span className="uppercase tracking-widest text-xs">{showOutcome ? 'Try Again' : 'Start Call'}</span>
                 </>
               )}
             </button>
@@ -130,7 +129,7 @@ const SaifStatusCard: React.FC = () => {
             {!isCalling && showOutcome && (
               <div className="flex items-center gap-3 animate-in fade-in slide-in-from-left-4 duration-1000">
                 <div className="h-4 w-px bg-white/10" />
-                <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest font-bold">Saved to Inbound Ledger</span>
+                <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest font-bold">Saved</span>
               </div>
             )}
 
