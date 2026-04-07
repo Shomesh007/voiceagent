@@ -27,7 +27,7 @@ const SaifSettingsView: React.FC = () => (
         </div>
         <textarea 
           className="w-full bg-[#131313] border border-white/5 rounded-2xl p-4 text-white font-serif italic text-sm leading-relaxed focus:outline-none focus:border-[#e6c364]/20 transition-all h-40"
-          defaultValue="You are Saif, a highly sophisticated luxury real estate concierge for Skyline Properties in Dubai..."
+          defaultValue="You are Saif, a highly sophisticated luxury real estate concierge for GSV in Dubai..."
         />
       </div>
 
@@ -60,7 +60,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ activeTab, setActiveTab, leads,
   useEffect(() => {
     const onCallStart = () => {
       setIsCalling(true);
-      setMessages([{ role: 'Saif', text: "Good evening. I am your concierge for Skyline Properties. How can I assist with your portfolio today?" }]);
+      setMessages([{ role: 'Saif', text: "Good evening. I am your concierge for GSV. How can I assist with your portfolio today?" }]);
     };
     const onCallEnd = () => {
       setIsCalling(false);
@@ -229,7 +229,7 @@ const MobileHome: React.FC<MobileHomeProps> = ({ activeTab, setActiveTab, leads,
       <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 h-20 bg-[#131313]/90 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-4">
           <span className="material-symbols-outlined text-[#e6c364] cursor-pointer">menu</span>
-          <h1 className="font-serif text-[#e6c364] text-lg uppercase tracking-[0.2em] font-bold">Skyline Properties</h1>
+          <h1 className="font-serif text-[#e6c364] text-lg uppercase tracking-[0.2em] font-bold">GSV</h1>
         </div>
         <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10">
           <img 

@@ -29,7 +29,7 @@ const SaifSettingsView: React.FC = () => (
           <label className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-black">How Saif Should Speak</label>
           <textarea 
             className="w-full bg-[var(--bg-mid)] border border-white/5 rounded-2xl p-6 text-[var(--text-primary)] font-serif italic text-lg leading-relaxed focus:outline-none focus:border-[var(--gold-primary)]/20 transition-all h-64"
-            defaultValue="You are Saif, a highly sophisticated luxury real estate concierge for Skyline Properties in Dubai. Your tone is elegant, professional, and high-energy..."
+            defaultValue="You are Saif, a highly sophisticated luxury real estate concierge for GSV in Dubai. Your tone is elegant, professional, and high-energy..."
 
           />
         </div>
@@ -108,7 +108,7 @@ const App: React.FC = () => {
               <div className="space-y-6">
                 <div className="flex items-center gap-3 text-[var(--gold-primary)] font-bold text-[11px] uppercase tracking-[0.5em] animate-in fade-in slide-in-from-left-4 duration-1000">
                   <Sparkles size={16} />
-                  <span>Skyline Agency Intelligence</span>
+                  <span>GSV Agency Intelligence</span>
                 </div>
                 
                 <h1 className="text-6xl font-bold tracking-tight font-serif leading-none">

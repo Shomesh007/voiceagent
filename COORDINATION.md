@@ -40,6 +40,6 @@ Build a complete demo dashboard for Dubai real estate AI voice agent. Must be re
 Starting fresh — Phase 1 not yet begun.
 
 ## Notes
-- Agency name placeholder: "Skyline Properties" — replace when client confirms
+- Agency name placeholder: "GSV" — replace when client confirms
 - Demo data already seeded in Supabase (see docs/supabase.md)
 - Priority is the call widget working — everything else is secondary

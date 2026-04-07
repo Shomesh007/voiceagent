@@ -34,7 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
             <span className="text-black font-bold text-2xl font-serif">S</span>
           </div>
           <div className="flex flex-col">
-            <h1 className="text-xl font-bold tracking-[0.1em] uppercase font-serif text-[var(--gold-primary)]">Skyline</h1>
+            <h1 className="text-xl font-bold tracking-[0.1em] uppercase font-serif text-[var(--gold-primary)]">GSV</h1>
             <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-[0.4em] font-bold">Properties Dubai</span>
           </div>
         </div>
